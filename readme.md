@@ -9,7 +9,7 @@ This application is built with Node.js and TypeScript, using Express as the web 
 The API is organized around domain-driven concepts (Sport, Event, Market, Selection) and implements best practices like idempotency for resilient client-server communication.
 
 ## The Twelve-Factor App Implementation
-
+https://12factor.net/
 This application follows the Twelve-Factor App methodology for building modern, scalable applications:
 
 1. **Codebase**: One codebase tracked in version control (Git), deployable to multiple environments
@@ -51,14 +51,14 @@ This ensures that even if a client retries a request (e.g., creating a bet slip,
 
 ### Markets
 
-- **GET /api/markets** - Get all markets with optional filtering
+- **GET /api/v1/markets** - Get all markets with optional filtering
   - Query parameters: `sportId`, `eventId`, `status`
-  - Example: `GET /api/markets?sportId=sport1&status=open`
+  - Example: `GET /api/v1/markets?sportId=sport1&status=open`
 
-- **GET /api/markets/:id** - Get a specific market by ID
-  - Example: `GET /api/markets/market1`
+- **GET /api/v1/markets/:id** - Get a specific market by ID
+  - Example: `GET /api/v1/markets/market1`
 
-- **POST /api/markets** - Create a new market
+- **POST /api/v1/markets** - Create a new market
   - Example request:
     ```json
     {
@@ -71,7 +71,7 @@ This ensures that even if a client retries a request (e.g., creating a bet slip,
     }
     ```
 
-- **PATCH /api/markets/:id/odds** - Update odds for selections in a market
+- **PATCH /api/v1/markets/:id/odds** - Update odds for selections in a market
   - Example request:
     ```json
     {
