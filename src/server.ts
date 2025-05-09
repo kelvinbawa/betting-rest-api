@@ -1,9 +1,17 @@
+import http from 'http';
 import { createApp } from './app';
+import logger from './utils/logger';
+import { config } from './config/env';
+import { setupGracefulShutdown } from './utils/graceful-shutdown';
 
 const app = createApp();
-const PORT = process.env.PORT || 3000;
+const PORT = config.server.port;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`API documentation available at http://localhost:${PORT}/api-docs`);
+const server = http.createServer(app);
+
+server.listen(PORT, () => {
+  logger.info(`Server running in ${config.server.environment} mode on port ${PORT}`);
+  logger.info(`API documentation available at http://localhost:${PORT}/api-docs`);
 });
+
+setupGracefulShutdown(server);
